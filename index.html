@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuluQyz — Косметика дүкені</title>
+    <style>
+        /* БҮКІЛ САЙТ */
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff8fa;
+            color: #333;
+        }
+        /* ЖОҒАРҒЫ МӘЗІР */
+        header {
+            background-color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px #eadde1;
+        }
+        .logo {
+            color: #c43d70;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        nav a {
+            color: #555;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #d24d7c;
+        }
+        .cart-button {
+            border: none;
+            background-color: #f5a9bd;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        /* БАСТЫ БЕТ */
+        .hero {
+            min-height: 430px;
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            background: linear-gradient(
+                120deg,
+                #ffe3eb,
+                #fff8fa
+            );
+        }
+        .hero-text {
+            max-width: 600px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            color: #b93667;
+            margin: 10px 0;
+        }
+        .hero p {
+            font-size: 19px;
+            line-height: 1.6;
+        }
+        .hero button {
+            background-color: #d24d7c;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .hero-image {
+            width: 420px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px #d9bfc8;
+        }
+        /* НЕГІЗГІ БӨЛІМ */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+        .title {
+            text-align: center;
+            color: #b93667;
+            font-size: 32px;
+        }
+        /* ІЗДЕУ */
+        .search {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e5cbd3;
+            border-radius: 25px;
+            font-size: 16px;
+            margin: 20px 0;
+            outline: none;
+        }
+        /* КАТЕГОРИЯ */
+        .categories {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .category {
+            border: 1px solid #e6aabd;
+            background-color: white;
+            color: #c43d70;
+            padding: 9px 18px;
+            border-radius: 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .category:hover,
+        .category.active {
+            background-color: #d24d7c;
+            color: white;
+        }
+        /* ТАУАРЛАР */
+        .products {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+        .product {
+            background-color: white;
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 5px 18px #eadde1;
+            transition: 0.2s;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        .product img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .product h3 {
+            margin-bottom: 5px;
+        }
+        .category-name {
+            color: #999;
+            font-size: 14px;
+        }
+        .price {
+            color: #c43d70;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .buy-button {
+            width: 100%;
+            padding: 11px;
+            background-color: #f2a5ba;
+            color: white;
+            border: none;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .buy-button:hover {
+            background-color: #d24d7c;
+        }
+        /* БІЗ ТУРАЛЫ */
+        .about {
+            background-color: #ffe8ee;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .about p {
+            max-width: 750px;
+            margin: 12px auto;
+            line-height: 1.7;
+        }
+        /* БАЙЛАНЫС */
+        .contact {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .contact a {
+            color: #c43d70;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* СЕБЕТ */
+        .cart-box {
+            background-color: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 18px #eadde1;
+            margin-top: 40px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+        .remove {
+            background-color: #eee;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .order-button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background-color: #c43d70;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        /* ТАПСЫРЫС ТЕРЕЗЕСІ */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.45);
+        }
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 450px;
+            margin: 8% auto;
+            padding: 30px;
+            border-radius: 18px;
+        }
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .modal-content textarea {
+            height: 100px;
+            resize: none;
+        }
+        .close {
+            float: right;
+            font-size: 25px;
+            cursor: pointer;
+        }
+        /* FOOTER */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        /* ТЕЛЕФОНҒА БЕЙІМДЕУ */
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 20px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero-image {
+                width: 100%;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- =========================
+     ЖОҒАРҒЫ МӘЗІР
+========================= -->
+<header>
+    <div class="logo">
+        SuluQyz
+    </div>
+    <nav>
+        <a href="#home">
+            Басты бет
+        </a>
+        <a href="#catalog">
+            Каталог
+        </a>
+        <a href="#about">
+            Біз туралы
+        </a>
+        <a href="#contact">
+            Байланыс
+        </a>
+    </nav>
+    <button
+        class="cart-button"
+        onclick="location.href='#cart'">
+        🛍 Себет
+        (<span id="cartCount">0</span>)
+    </button>
+</header>
+<!-- =========================
+     БАСТЫ БЕТ
+========================= -->
+<section class="hero" id="home">
+    <div class="hero-text">
+        <p>
+            Сұлулық әлеміне қош келдіңіз!
+        </p>
+        <h1>
+            Сұлулық сізден басталады
+        </h1>
+        <p>
+            Күнделікті күтім мен әдемі макияжға
+            арналған сапалы косметика өнімдерін
+            бір жерден табыңыз.
+        </p>
+        <button
+            onclick="location.href='#catalog'">
+            Каталогты көру
+        </button>
+    </div>
+    <img
+        class="hero-image"
+        src="sulu.jpg"
+        alt="Косметика өнімдері">
+</section>
+<!-- =========================
+     КАТАЛОГ
+========================= -->
+<section
+    class="container"
+    id="catalog">
+    <h2 class="title">
+        Косметика каталогы
+    </h2>
+    <!-- ІЗДЕУ -->
+    <input
+        class="search"
+        id="searchInput"
+        type="text"
+        placeholder="🔍 Өнім атауын іздеу..."
+        oninput="showProducts()">
+    <!-- КАТЕГОРИЯЛАР -->
+    <div class="categories">
+        <button
+            class="category active"
+            onclick="
+                filterCategory('Барлығы', this)
+            ">
+            Барлығы
+        </button>
+        <button
+            class="category"
+            onclick="
+                filterCategory('Бет күтімі', this)
+            ">
+            Бет күтімі
+        </button>
+        <button
+            class="category"
+            onclick="
+                filterCategory('Ерін', this)
+            ">
+            Ерін
+        </button>
+        <button
+            class="category"
+            onclick="
+                filterCategory('Көз', this)
+            ">
+            Көз
+        </button>
+        <button
+            class="category"
+            onclick="
+                filterCategory('Макияж', this)
+            ">
+            Макияж
+        </button>
+    </div>
+    <!-- ТАУАРЛАР ОСЫ ЖЕРГЕ ШЫҒАДЫ -->
+    <div
+        class="products"
+        id="products">
+    </div>
+    <!-- =========================
+         СЕБЕТ
+    ========================= -->
+    <div
+        class="cart-box"
+        id="cart">
+        <h2>
+            🛍 Менің себетім
+        </h2>
+        <div id="cartItems">
+            <p>
+                Себет әзірге бос.
+            </p>
+        </div>
+        <h3 id="cartTotal">
+            Жалпы: 0 ₸
+        </h3>
+        <button
+            class="order-button"
+            onclick="openOrder()">
+            Тапсырыс беру
+        </button>
+    </div>
+</section>
+<!-- =========================
+     БІЗ ТУРАЛЫ
+========================= -->
+<section
+    class="about"
+    id="about">
+    <h2 class="title">
+        Біз туралы
+    </h2>
+    <p>
+        <b>SuluQyz</b> —
+        сұлулық пен күтімге арналған
+        заманауи косметика дүкені.
+    </p>
+    <p>
+        Біз бет күтіміне, ерінге, көзге
+        және макияжға арналған өнімдерді
+        ұсынамыз.
+    </p>
+    <p>
+        Біздің мақсатымыз —
+        сапалы өнімді ыңғайлы әрі
+        түсінікті түрде таңдауға
+        мүмкіндік беру.
+    </p>
+</section>
+<!-- =========================
+     БАЙЛАНЫС
+========================= -->
+<section
+    class="contact"
+    id="contact">
+    <h2 class="title">
+        Байланыс
+    </h2>
+    <p>
+        📧 Email:
+        <a href="mailto:suluqyz@gmail.com">
+            suluqyz@gmail.com
+        </a>
+    </p>
+    <p>
+        📞 Телефон:
+        <a href="tel:+77026807688">
+            +7 700 123 45 67
+        </a>
+    </p>
+    <p>
+        💬 WhatsApp:
+        <a
+            href="https://wa.me/77052775921"
+            target="_blank">
+            WhatsApp арқылы жазу
+        </a>
+    </p>
+</section>
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+    <p>
+        © 2026 SuluQyz — Косметика дүкені
+    </p>
+    <p>
+        Барлық құқықтар қорғалған.
+    </p>
+</footer>
+<!-- =========================
+     ТАПСЫРЫС БЕРУ ТЕРЕЗЕСІ
+========================= -->
+<div
+    class="modal"
+    id="orderModal">
+    <div class="modal-content">
+        <span
+            class="close"
+            onclick="closeOrder()">
+            ×
+        </span>
+        <h2>
+            Тапсырыс беру
+        </h2>
+        <p>
+            Төмендегі мәліметтерді толтырыңыз:
+        </p>
+        <input
+            id="customerName"
+            type="text"
+            placeholder="Аты-жөніңіз">
+        <input
+            id="customerPhone"
+            type="text"
+            placeholder="Телефон нөміріңіз">
+        <textarea
+            id="customerAddress"
+            placeholder="Жеткізу мекенжайы">
+        </textarea>
+        <button
+            class="order-button"
+            onclick="sendOrder()">
+            Тапсырысты растау
+        </button>
+    </div>
+</div>
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+<script>
+/* ӨНІМДЕР */
+let products = [
+    {
+        name: "Ылғалдандырғыш крем",
+        category: "Бет күтімі",
+        price: 4500,
+        image:
+        "data:image/avif;base64,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"
+    },
+    {
+        name: "Күңгірт ерін далабы",
+        category: "Ерін",
+        price: 3200,
+        image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSme8fitPApwiJhn_y0vtbbqNaWbWIeQHXOruNt7ByKA&s"
+    },
+    {
+        name: "Бетке арналған сарысу",
+        category: "Бет күтімі",
+        price: 6800,
+        image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMI9yWSx-PpEY6reK1ZCAo3c7SJHm-ZXjJ7ag1RZx1OQ&s=10"
+    },
+    {
+        name: "Қабақ бояуы палеткасы",
+        category: "Көз",
+        price: 8500,
+        image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS44OTEwnNY8l3z6stlI0IdFqT7h_FjEk84_jDzWVC8NA&s=10"
+    },
+    {
+        name: "Тоналды крем",
+        category: "Макияж",
+        price: 7200,
+        image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfk55aGD8J5s1U2sOrX4CPqhK3IM5FCzRrbScY1s-VzA&s"
+    },
+    {
+        name: "Кірпікке арналған тушь",
+        category: "Көз",
+        price: 3900,
+        image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6m6AWBSPATOQa27nhc6GCBsztNoZFRQgvIKpJNJhtWw&s=10"
+    }
+];
+/* СЕБЕТ */
+let cart = [];
+/* ТАҢДАЛҒАН КАТЕГОРИЯ */
+let selectedCategory = "Барлығы";
+/* =========================
+   ӨНІМДЕРДІ КӨРСЕТУ
+========================= */
+function showProducts() {
+    let searchText =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+    let productBox =
+        document.getElementById("products");
+    productBox.innerHTML = "";
+    products.forEach(
+        function(product, index) {
+            let matchesSearch =
+                product.name
+                .toLowerCase()
+                .includes(searchText);
+            let matchesCategory =
+                selectedCategory === "Барлығы"
+                ||
+                product.category === selectedCategory;
+            if (
+                matchesSearch &&
+                matchesCategory
+            ) {
+                productBox.innerHTML += `
+                    <div class="product">
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}">
+                        <p class="category-name">
+                            ${product.category}
+                        </p>
+                        <h3>
+                            ${product.name}
+                        </h3>
+                        <p class="price">
+                            ${product.price.toLocaleString()}
+                            ₸
+                        </p>
+                        <button
+                            class="buy-button"
+                            onclick="
+                                addToCart(${index})
+                            ">
+                            Себетке салу
+                        </button>
+                    </div>
+                `;
+            }
+        }
+    );
+}
+/* =========================
+   КАТЕГОРИЯНЫ ТАҢДАУ
+========================= */
+function filterCategory(
+    category,
+    button
+) {
+    selectedCategory = category;
+    document
+        .querySelectorAll(".category")
+        .forEach(
+            function(item) {
+                item.classList.remove(
+                    "active"
+                );
+            }
+        );
+    button.classList.add("active");
+    showProducts();
+}
+/* =========================
+   СЕБЕТКЕ ҚОСУ
+========================= */
+function addToCart(index) {
+    cart.push(
+        products[index]
+    );
+    updateCart();
+    alert(
+        "Өнім себетке қосылды!"
+    );
+}
+/* =========================
+   СЕБЕТТІ ЖАҢАРТУ
+========================= */
+function updateCart() {
+    let cartItems =
+        document.getElementById(
+            "cartItems"
+        );
+    let cartCount =
+        document.getElementById(
+            "cartCount"
+        );
+    let cartTotal =
+        document.getElementById(
+            "cartTotal"
+        );
+    cartCount.innerText =
+        cart.length;
+    if (
+        cart.length === 0
+    ) {
+        cartItems.innerHTML =
+            "<p>Себет әзірге бос.</p>";
+        cartTotal.innerText =
+            "Жалпы: 0 ₸";
+        return;
+    }
+    let total = 0;
+    cartItems.innerHTML = "";
+    cart.forEach(
+        function(item, index) {
+            total =
+                total + item.price;
+            cartItems.innerHTML += `
+                <div class="cart-item">
+                    <span>
+                        ${item.name}
+                        —
+                        ${item.price.toLocaleString()}
+                        ₸
+                    </span>
+                    <button
+                        class="remove"
+                        onclick="
+                            removeFromCart(${index})
+                        ">
+                        Өшіру
+                    </button>
+                </div>
+            `;
+        }
+    );
+    cartTotal.innerText =
+        "Жалпы: " +
+        total.toLocaleString() +
+        " ₸";
+}
+/* =========================
+   СЕБЕТТЕН ӨШІРУ
+========================= */
+function removeFromCart(index) {
+    cart.splice(
+        index,
+        1
+    );
+    updateCart();
+}
+/* =========================
+   ТАПСЫРЫС ТЕРЕЗЕСІН АШУ
+========================= */
+function openOrder() {
+    if (
+        cart.length === 0
+    ) {
+        alert(
+            "Алдымен себетке өнім қосыңыз!"
+        );
+        return;
+    }
+    document
+        .getElementById(
+            "orderModal"
+        )
+        .style.display = "block";
+}
+/* =========================
+   ТАПСЫРЫС ТЕРЕЗЕСІН ЖАБУ
+========================= */
+function closeOrder() {
+    document
+        .getElementById(
+            "orderModal"
+        )
+        .style.display = "none";
+}
+/* =========================
+   ТАПСЫРЫСТЫ РАСТАУ
+========================= */
+function sendOrder() {
+    let name =
+        document
+        .getElementById(
+            "customerName"
+        )
+        .value;
+    let phone =
+        document
+        .getElementById(
+            "customerPhone"
+        )
+        .value;
+    let address =
+        document
+        .getElementById(
+            "customerAddress"
+        )
+        .value;
+    if (
+        name === "" ||
+        phone === "" ||
+        address === ""
+    ) {
+        alert(
+            "Барлық жолды толтырыңыз!"
+        );
+        return;
+    }
+    alert(
+        "Рақмет, " +
+        name +
+        "!\n\n" +
+        "Тапсырысыңыз қабылданды.\n" +
+        "Біз сізбен " +
+        phone +
+        " нөмірі арқылы байланысамыз."
+    );
+    cart = [];
+    updateCart();
+    closeOrder();
+}
+/* САЙТ АШЫЛҒАНДА ӨНІМДЕРДІ КӨРСЕТУ */
+showProducts();
+</script>
+</body>
+</html>
